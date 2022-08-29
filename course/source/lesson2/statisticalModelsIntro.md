@@ -1,7 +1,10 @@
 Statistical models
 ==================
 
-VIDEO HERE
+## WORK IN PROGRESS
+## THIS SECTION WILL BE AVAILABLE
+## ON 5TH SEPTEMBER
+
 
 Over the last decade there has been an incredible transformation in 
 the teaching of University statistical modelling. In Uppsala, I have gone 
