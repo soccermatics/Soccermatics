@@ -21,6 +21,8 @@ dependencies:
   - pip
   - xgboost
   - tensorflow
+  - umap
+  - ruptures
   - pip:
       - adjustText
       - highlight-text

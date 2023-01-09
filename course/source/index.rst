@@ -207,6 +207,8 @@ Contents
    gettingstarted.md
    gallery/plot_UsingStatsbomb
    gallery/plot_UsingWyscout
+   gallery/plot_Sign_Test
+   gallery/plot_t_test
 
 .. toctree::
    :maxdepth: 1
@@ -296,5 +298,13 @@ Contents
    lesson8/PhysicalData.md
    gallery/lesson8/plot_AccDecRatio.md
    gallery/lesson8/plot_EPV_ExternalLoad.md
+
+.. toctree::
+   :maxdepth: 1
+   :caption: 9, Clustering:
+
+   gallery/lesson9/plot_ClusteringPlayers.md
+   gallery/lesson9/plot_ClusteringProgressivePasses.md
+
 
 
