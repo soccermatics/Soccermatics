@@ -1,7 +1,8 @@
 """
 Z and t-tests
 =========================================
-In this tutorial we demonstrate how to check if values are equal/greater than/lower than using z-test and t-tests
+In this tutorial we demonstrate how to check if values are significantly different from each other 
+using z-tests and t-tests
 """
 
 import pandas as pd
@@ -20,20 +21,21 @@ warnings.filterwarnings('ignore')
 # Opening the dataset
 # ----------------------------
 #
-# First we open the data. For this example we will use WyScout data from 2017/18 Premier League season.  To meet file size requirements of Github, we have to open it from different files,
+# First we open the data. For this example we will use WyScout data from 2017/18 Premier League season.  To meet file size requirements of 
+# Github, we have to open it from different files,
 # but you can open the file locally from the directory you saved it in. Also, we open the file containing all teams in WyScout database.
 
 #open events
 train = pd.DataFrame()
 for i in range(13):
     file_name = 'events_England_' + str(i+1) + '.json'
-    path = os.path.join(str(pathlib.Path().resolve().parents[0]), 'data', 'Wyscout', file_name)
+    path = os.path.join(str(pathlib.Path().resolve()), 'data', 'Wyscout', file_name)
     with open(path) as f:
         data = json.load(f)
     train = pd.concat([train, pd.DataFrame(data)])
     
 #open team data
-path = os.path.join(str(pathlib.Path().resolve().parents[0]),"data", 'Wyscout', 'teams.json')
+path = os.path.join(str(pathlib.Path().resolve()),"data", 'Wyscout', 'teams.json')
 with open(path) as f:
     teams = json.load(f)
 
@@ -162,6 +164,7 @@ else:
 # We use two-sample t-test to check if Manchester City took more corners per game than Newcastle. We set the significance level at 0.05.
 # At this significance level, we reject the null hypothesis. Therefore, we claim that City took
 # more corners than Newcastle. 
+
 city_corners = summary2.loc[summary2["name"] == 'Manchester City']["counts"]
 castle_corners = summary2.loc[summary2["name"] == 'Newcastle United']["counts"]
 
