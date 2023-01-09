@@ -227,8 +227,10 @@ plt.show()
 
 maxacc = 6
 home_acc_dict = {}
+
 for player in home_players:
     #calculate acceleration
+    
     tracking_home['Home_' + player + '_Acc'] = tracking_home['Home_' + player + '_speed'].diff() / dt
     #set acceleration condition
     tracking_home['Home_' + player + '_Acc'].loc[np.absolute(tracking_home['Home_' + player + '_Acc']) > maxacc] = np.nan

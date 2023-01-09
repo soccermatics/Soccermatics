@@ -65,6 +65,7 @@ move_df["x"] = move_df.positions.apply(lambda cell: (cell[0]['x']) * 105/100)
 move_df["y"] = move_df.positions.apply(lambda cell: (100 - cell[0]['y']) * 68/100)
 move_df["end_x"] = move_df.positions.apply(lambda cell: (cell[1]['x']) * 105/100)
 move_df["end_y"] = move_df.positions.apply(lambda cell: (100 - cell[1]['y']) * 68/100)
+move_df = move_df.loc[(((move_df["end_x"] != 0) & (move_df["end_y"] != 68)) & ((move_df["end_x"] != 105) & (move_df["end_y"] != 0)))]
 
 #create 2D histogram of these
 pitch = Pitch(line_color='black',pitch_type='custom', pitch_length=105, pitch_width=68, line_zorder = 2)
