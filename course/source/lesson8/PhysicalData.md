@@ -12,9 +12,9 @@ That said, most data scientists working within a club will have responsibility f
 
 In this video, Sudarshan Gopaladesikan, Head of Sports Data Science at Benfica, goes in to details of how to use tracking data to do sports science.
 
+<iframe width="640" height="420" src="https://www.youtube.com/embed/L6jtpFE7c6I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<iframe width="640" height="420" src="https://youtu.be/L6jtpFE7c6I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+In the next pages we step through the code Suds describes in the video.
 
 
 

@@ -5,13 +5,8 @@ In this tutorial we will calculate distance-based metrics for player fitness.
 The code is based on Sudarshan "Suds" Gopaladesikan's 
 `code <https://github.com/slbenfica1079/sportsdatascience>`_
 
+"""
 
-Using tracking data in sport science
-
-Suds goes in to details of how to use tracking data to do sports science.
-
-provided for `Friends of Tracking <https://www.youtube.com/channel/UCUBFJYcag8j2rm_9HkrrA7w>`_. 
-""" 
 #importing necessary libraries 
 import Metrica_IO as mio
 import Metrica_Velocities as mvel
@@ -29,7 +24,7 @@ pd.options.mode.chained_assignment = None
 ##############################################################################
 # Opening data
 # ----------------------------
-# For this task we will use Metrica data. We open it using Laurie Shaw's codes. 
+# For this task we will use Metrica data. 
 # We make separate dataframes for home and away teams as well as for events.
 # Then we adjust the direction so the teams attack the same direction for both halves.
 
