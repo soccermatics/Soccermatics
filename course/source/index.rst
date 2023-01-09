@@ -303,8 +303,8 @@ Contents
    :maxdepth: 1
    :caption: 9, Clustering:
 
-   gallery/lesson9/plot_ClusteringPlayers.md
    gallery/lesson9/plot_ClusteringProgressivePasses.md
-
+   gallery/lesson9/plot_ClusteringPlayers.md
+ 
 
 

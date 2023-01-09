@@ -2,10 +2,10 @@
 Clustering progressive passes
 =========================================
 In this tutorial we show how to cluster players to positions using their statistics. We will use a dataset provided by
-Ronan Manning with statistics for everty top 5 leagues player. It is available `here <https://twitter.com/ronanmann/status/1408504415690969089?s=21>`_.
-This tutorial is inspired by John Muller's article on The Athletic `Introducing The Athletic’s 18 player roles <https://theathletic.com/3473297/2022/08/10/player-roles-the-athletic/>`.
-However, only the first part, clustering players' positions is explained.
+Ronan Manning with statistics for everty top 5 leagues player, which is available `here <https://twitter.com/ronanmann/status/1408504415690969089?s=21>`_.
+This tutorial is inspired by John Muller's article on The Athletic `Introducing The Athletics 18 player roles <https://theathletic.com/3473297/2022/08/10/player-roles-the-athletic/>`.
 """
+
 #importing necessary libraries
 import pandas as pd
 import numpy as np
@@ -26,7 +26,8 @@ np.random.seed(4)
 # ----------------------------
 #
 # We open the data and change minutes played to integers. Then, we keep ony players who played more than 500 minutes.
-# As the next step, we convert all data to numeric format and replace NaN with 0. Last but not least, we keep only columns
+# As the next step, we convert all data to numeric format and replace NaN with 0. Last but not least, 
+# we keep only columns
 # with player statistics.
 
 #open data
@@ -43,7 +44,8 @@ X = data.iloc[:, 11:]
 ##############################################################################
 # Dimensionality reduction
 # ----------------------------
-# Since we have over 100 features, it is important to reduce the dimensionality. First standard scaling is applied to data
+# Since we have over 100 features, it is important to reduce the dimensionality. First standard scaling 
+# is applied to data.
 # Then, we use UMAP algorithm, as in John Muller's article, to reduce the dimensions to 2. As the next step we plot
 # the data with formation label available in the dataset. 
 
@@ -143,8 +145,8 @@ plt.show()
 ##############################################################################
 # A different approach to the same problem - clustering
 # ----------------------------
-# This time, we cluster the data using Gaussian Mixture Model clustering. It is the same model as in the article. We also
-# plot the predictions on the 2 dimensional space. 
+# This time we cluster the data using Gaussian Mixture Model clustering. It is the same model as in Muller's article. 
+# We also plot the predictions on the 2 dimensional space. 
 
 from sklearn.mixture import GaussianMixture
 #declare object
