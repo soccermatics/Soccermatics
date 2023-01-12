@@ -371,112 +371,114 @@ plt.show()
 # we have to prepare the data for both home and away players to calculate both values. Then, we will use mixed linear regression to show significance of this diffference.
 
 
-#for home team
-home_spi_list = []
-#for each player
-for player in home_players:
+# #for home team
+# home_spi_list = []
+# #for each player
+# for player in home_players:
     
-    #get speed rolling average
-    test_spi = tracking_home['Home_'+player+'_speed'].rolling(1500,min_periods=1).apply(lambda x : np.nansum(x)) / 25.
-    #find it peaks
-    xcoords = sp.signal.find_peaks(test_spi, distance=1500)
-    #get values and indicies of peaks
-    spi_values = list(map(lambda x: test_spi[x], xcoords[0]))
-    #take minute after
-    spi_values_index = np.argsort(spi_values)[-3:]
-    spi_index = xcoords[0][spi_values_index]
-    #for each peak calculate a minute after
-    for i in range(len(spi_index)):
-        spi_temp = spi_index[i]
-        spi_value_temp = spi_values[spi_values_index[i]]
-        spi_min_after = sum(tracking_home['Home_'+player+'_speed'][spi_temp+2:spi_temp+1502]) / 25. 
-        #append it
-        spi_append = [player,'Dist', spi_value_temp, spi_min_after]
-        home_spi_list.append(spi_append)
-    #find only high intensity runs
-    test_hsd_spi = pd.Series(np.where(tracking_home['Home_'+player+'_speed'] >= 5,tracking_home['Home_'+player+'_speed'],0)).rolling(1500,min_periods=1).apply(lambda x : np.nansum(x)) / 25.
-    #find peaks and their indicies
-    xcoords = sp.signal.find_peaks(test_hsd_spi, distance=1500)
-    hsd_values = list(map(lambda x: test_hsd_spi[x], xcoords[0]))
-    #take minutes after
-    hsd_values_index = np.argsort(hsd_values)[-3:]
-    hsd_index = xcoords[0][hsd_values_index]
-    for i in range(len(hsd_index)):
-        hsd_temp = hsd_index[i]
-        hsd_value_temp = hsd_values[hsd_values_index[i]]
-        hsd_min_after = sum(tracking_home['Home_' + player + '_speed'][hsd_temp+ 2:hsd_temp+ 1502]) / 25.
-        hsd_append = [player,'HSD', hsd_value_temp, hsd_min_after]
-        home_spi_list.append(hsd_append)
+#     #get speed rolling average
+#     test_spi = tracking_home['Home_'+player+'_speed'].rolling(1500,min_periods=1).apply(lambda x : np.nansum(x)) / 25.
+#     #find it peaks
+#     xcoords = sp.signal.find_peaks(test_spi, distance=1500)
+#     #get values and indicies of peaks
+#     spi_values = list(map(lambda x: test_spi[x], xcoords[0]))
+#     #take minute after
+#     spi_values_index = np.argsort(spi_values)[-3:]
+#     spi_index = xcoords[0][spi_values_index]
+#     #for each peak calculate a minute after
+#     for i in range(len(spi_index)):
+#         spi_temp = spi_index[i]
+#         spi_value_temp = spi_values[spi_values_index[i]]
+#         spi_min_after = sum(tracking_home['Home_'+player+'_speed'][spi_temp+2:spi_temp+1502]) / 25. 
+#         #append it
+#         spi_append = [player,'Dist', spi_value_temp, spi_min_after]
+#         home_spi_list.append(spi_append)
+#     #find only high intensity runs
+#     test_hsd_spi = pd.Series(np.where(tracking_home['Home_'+player+'_speed'] >= 5,tracking_home['Home_'+player+'_speed'],0)).rolling(1500,min_periods=1).apply(lambda x : np.nansum(x)) / 25.
+#     #find peaks and their indicies
+#     xcoords = sp.signal.find_peaks(test_hsd_spi, distance=1500)
+#     hsd_values = list(map(lambda x: test_hsd_spi[x], xcoords[0]))
+#     #take minutes after
+#     hsd_values_index = np.argsort(hsd_values)[-3:]
+#     hsd_index = xcoords[0][hsd_values_index]
+#     for i in range(len(hsd_index)):
+#         hsd_temp = hsd_index[i]
+#         hsd_value_temp = hsd_values[hsd_values_index[i]]
+#         hsd_min_after = sum(tracking_home['Home_' + player + '_speed'][hsd_temp+ 2:hsd_temp+ 1502]) / 25.
+#         hsd_append = [player,'HSD', hsd_value_temp, hsd_min_after]
+#         home_spi_list.append(hsd_append)
 
-#calculate distance covered per minute
-home_summary['DPM'] = 1000*(home_summary['Distance [km]'] / home_summary['Minutes Played'])
+# #calculate distance covered per minute
+# home_summary['DPM'] = 1000*(home_summary['Distance [km]'] / home_summary['Minutes Played'])
 
-#prepare data for modelling
-spi_df = pd.DataFrame(np.array(home_spi_list).reshape(83,4), columns = ['Player','Type','SPI','MinAfter'])
-merged = pd.merge(spi_df, home_summary[['DPM']], left_on='Player', right_index=True)
-#remove goalkeeper, would bias results
-hsd_df = merged[merged['Player']!='11']
-#remove nan
-hsd_df_lmm = hsd_df[~hsd_df['MinAfter'].str.contains("nan")]
-hsd_df_lmm['MinAfter'] = pd.to_numeric(hsd_df_lmm['MinAfter'])
-hsd_df_lmm['Diff'] = hsd_df_lmm['MinAfter'] - hsd_df_lmm['DPM']
-hsd_df_lmm['Team'] = 'Home'
+# #prepare data for modelling
+# spi_df = pd.DataFrame(np.array(home_spi_list).reshape(83,4), columns = ['Player','Type','SPI','MinAfter'])
+# merged = pd.merge(spi_df, home_summary[['DPM']], left_on='Player', right_index=True)
+# #remove goalkeeper, would bias results
+# hsd_df = merged[merged['Player']!='11']
+# #remove nan
+# hsd_df_lmm = hsd_df[~hsd_df['MinAfter'].str.contains("nan")]
+# hsd_df_lmm['MinAfter'] = pd.to_numeric(hsd_df_lmm['MinAfter'])
+# hsd_df_lmm['Diff'] = hsd_df_lmm['MinAfter'] - hsd_df_lmm['DPM']
+# hsd_df_lmm['Team'] = 'Home'
 
-#repeat for away team
-away_spi_list = []
+# #repeat for away team
+# away_spi_list = []
 
-for player in away_players:
-    #get speed rolling average
-    test_spi = tracking_away['Away_'+player+'_speed'].rolling(1500,min_periods=1).apply(lambda x : np.nansum(x)) / 25.
-    #find peaks
-    xcoords = sp.signal.find_peaks(test_spi, distance=1500)
-    #get values and indicies
-    spi_values = list(map(lambda x: test_spi[x], xcoords[0]))
-    #take 3 biggest peaks
-    spi_values_index = np.argsort(spi_values)[-3:]
-    spi_index = xcoords[0][spi_values_index]
-    for i in range(len(spi_index)):
-        spi_temp = spi_index[i]
-        spi_value_temp = spi_values[spi_values_index[i]]
-        spi_min_after = sum(tracking_away['Away_'+player+'_speed'][spi_temp+2:spi_temp+1502]) / 25. # Find the top 3 for each player and then can do a lmm (Diff From Avg ~ 1, group == Player)
-        spi_append = [player,'Dist',spi_value_temp,spi_min_after]
-        away_spi_list.append(spi_append)
-    #for each peak calculate a minute after
-    #same steps for high intensity runs    
-    test_hsd_spi = pd.Series(np.where(tracking_away['Away_'+player+'_speed'] >= 5,tracking_away['Away_'+player+'_speed'],0)).rolling(1500,min_periods=1).apply(lambda x : np.nansum(x)) / 25.
-    xcoords = sp.signal.find_peaks(test_hsd_spi, distance=1500)
-    hsd_values = list(map(lambda x: test_hsd_spi[x], xcoords[0]))
-    hsd_values_index = np.argsort(hsd_values)[-3:]
-    hsd_index = xcoords[0][hsd_values_index]
-    for i in range(len(hsd_index)):
-        hsd_temp = hsd_index[i]
-        hsd_value_temp = hsd_values[hsd_values_index[i]]
-        hsd_min_after = sum(tracking_away['Away_' + player + '_speed'][hsd_temp+ 2:hsd_temp+ 1502]) / 25.
-        hsd_append = [player,'HSD',hsd_value_temp,hsd_min_after]
-        away_spi_list.append(hsd_append)
+# for player in away_players:
+#     #get speed rolling average
+#     test_spi = tracking_away['Away_'+player+'_speed'].rolling(1500,min_periods=1).apply(lambda x : np.nansum(x)) / 25.
+#     #find peaks
+#     xcoords = sp.signal.find_peaks(test_spi, distance=1500)
+#     #get values and indicies
+#     spi_values = list(map(lambda x: test_spi[x], xcoords[0]))
+#     #take 3 biggest peaks
+#     spi_values_index = np.argsort(spi_values)[-3:]
+#     spi_index = xcoords[0][spi_values_index]
+#     for i in range(len(spi_index)):
+#         spi_temp = spi_index[i]
+#         spi_value_temp = spi_values[spi_values_index[i]]
+#         spi_min_after = sum(tracking_away['Away_'+player+'_speed'][spi_temp+2:spi_temp+1502]) / 25. # Find the top 3 for each player and then can do a lmm (Diff From Avg ~ 1, group == Player)
+#         spi_append = [player,'Dist',spi_value_temp,spi_min_after]
+#         away_spi_list.append(spi_append)
+#     #for each peak calculate a minute after
+#     #same steps for high intensity runs    
+#     test_hsd_spi = pd.Series(np.where(tracking_away['Away_'+player+'_speed'] >= 5,tracking_away['Away_'+player+'_speed'],0)).rolling(1500,min_periods=1).apply(lambda x : np.nansum(x)) / 25.
+#     xcoords = sp.signal.find_peaks(test_hsd_spi, distance=1500)
+#     hsd_values = list(map(lambda x: test_hsd_spi[x], xcoords[0]))
+#     hsd_values_index = np.argsort(hsd_values)[-3:]
+#     hsd_index = xcoords[0][hsd_values_index]
+#     for i in range(len(hsd_index)):
+#         hsd_temp = hsd_index[i]
+#         hsd_value_temp = hsd_values[hsd_values_index[i]]
+#         hsd_min_after = sum(tracking_away['Away_' + player + '_speed'][hsd_temp+ 2:hsd_temp+ 1502]) / 25.
+#         hsd_append = [player,'HSD',hsd_value_temp,hsd_min_after]
+#         away_spi_list.append(hsd_append)
         
-#change to meters
-away_summary['DPM'] = 1000*(away_summary['Distance [km]'] / away_summary['Minutes Played'])
-#prepare for modelling
-spi_df = pd.DataFrame(np.array(away_spi_list).reshape(72,4), columns = ['Player','Type','SPI','MinAfter'])
-merged = pd.merge(spi_df, away_summary[['DPM']], left_on='Player', right_index=True)
-#remove goalie
-hsd_df = merged[merged['Player']!='25']
-hsd_df_lmm_away = hsd_df[~hsd_df['MinAfter'].str.contains("nan")]
-hsd_df_lmm_away['MinAfter'] = pd.to_numeric(hsd_df_lmm_away['MinAfter'])
-hsd_df_lmm_away['Diff'] = hsd_df_lmm_away['MinAfter'] - hsd_df_lmm_away['DPM']
-hsd_df_lmm_away['Team'] = 'Away'
+# #change to meters
+# away_summary['DPM'] = 1000*(away_summary['Distance [km]'] / away_summary['Minutes Played'])
+# #prepare for modelling
+# spi_df = pd.DataFrame(np.array(away_spi_list).reshape(72,4), columns = ['Player','Type','SPI','MinAfter'])
+# merged = pd.merge(spi_df, away_summary[['DPM']], left_on='Player', right_index=True)
+# #remove goalie
+# hsd_df = merged[merged['Player']!='25']
+# hsd_df_lmm_away = hsd_df[~hsd_df['MinAfter'].str.contains("nan")]
+# hsd_df_lmm_away['MinAfter'] = pd.to_numeric(hsd_df_lmm_away['MinAfter'])
+# hsd_df_lmm_away['Diff'] = hsd_df_lmm_away['MinAfter'] - hsd_df_lmm_away['DPM']
+# hsd_df_lmm_away['Team'] = 'Away'
 
-hsd_full = pd.concat([hsd_df_lmm, hsd_df_lmm_away])
+# hsd_full = pd.concat([hsd_df_lmm, hsd_df_lmm_away])
 
-#model hsd and distance
-md_hsd = smf.mixedlm("Diff ~ 1", hsd_full[hsd_full['Type']=='HSD'], groups = hsd_full[hsd_full['Type']=='HSD']['Player'])
-md_dist = smf.mixedlm("Diff ~ 1", hsd_full[hsd_full['Type']=='Dist'], groups = hsd_full[hsd_full['Type']=='Dist']['Player'])
+# #model hsd and distance
+# md_hsd = smf.mixedlm("Diff ~ 1", hsd_full[hsd_full['Type']=='HSD'], groups = hsd_full[hsd_full['Type']=='HSD']['Player'])
+# md_dist = smf.mixedlm("Diff ~ 1", hsd_full[hsd_full['Type']=='Dist'], groups = hsd_full[hsd_full['Type']=='Dist']['Player'])
 
-mdf_hsd = md_hsd.fit(method='cg')
-print(mdf_hsd.summary())
+# mdf_hsd = md_hsd.fit(method='cg')
+# print(mdf_hsd.summary())
 
-mdf_dist = md_dist.fit(method='cg')
-print(mdf_dist.summary())
+# mdf_dist = md_dist.fit(method='cg')
+# print(mdf_dist.summary())
 
-#when you print it out you will see that the difference is statistically significant
+##############################################################################
+# The code above has been commented out because of too long running time.
+# If you unoccment it, it will print out that the difference is statistically significant
