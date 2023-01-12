@@ -298,13 +298,13 @@ Contents
    lesson8/PhysicalData.md
    gallery/lesson8/plot_AccDecRatio.md
    gallery/lesson8/plot_EPV_ExternalLoad.md
-
+x
 .. toctree::
    :maxdepth: 1
    :caption: 9, Clustering:
 
    gallery/lesson9/plot_ClusteringProgressivePasses.md
-   gallery/lesson9/plot_ClusteringPlayers.md
+
  
 
 
