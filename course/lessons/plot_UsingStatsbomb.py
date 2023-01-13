@@ -46,11 +46,12 @@ df_match.info()
 # To check the lineups we use the *lineup* method. We do it for England Sweden WWC 2019 game - *game_id* is 69301 
 # - you can check that in the df_match. In this dataframe you will find all players who played in this game, their teams 
 # and jersey numbers
+# COMMENTED OUT BECAUSE OF CHANGE OF DATA FORMAT.
 
 #opening data using match method
-df_lineup = parser.lineup(69301)
+#df_lineup = parser.lineup(69301)
 #structure of data
-df_lineup.info()
+#df_lineup.info()
 
 ##############################################################################
 # Event data
