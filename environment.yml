@@ -21,6 +21,7 @@ dependencies:
   - pip
   - xgboost
   - tensorflow
+  - umap-learn
   - pip:
       - adjustText
       - highlight-text
@@ -28,6 +29,5 @@ dependencies:
       - mplsoccer
       - sphinxcontrib-youtube
       - myst-parser
-      - umap
       - ruptures
 
