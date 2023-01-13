@@ -19,7 +19,7 @@ dependencies:
   - scikit-learn
   - linkify-it-py
   - pip
-  - xgboost
+  - xgboost=1.6.2
   - tensorflow
   - umap-learn
   - pip:
