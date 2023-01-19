@@ -1,9 +1,9 @@
 """
-Clustering progressive passes
+Clustering players
 =========================================
 In this tutorial we show how to cluster players to positions using their statistics. We will use a dataset provided by
 Ronan Manning with statistics for everty top 5 leagues player, which is available `here <https://twitter.com/ronanmann/status/1408504415690969089?s=21>`_.
-This tutorial is inspired by John Muller's article on The Athletic `Introducing The Athletics 18 player roles <https://theathletic.com/3473297/2022/08/10/player-roles-the-athletic/>`.
+This tutorial is inspired by John Muller's article on The Athletic `Introducing The Athletics 18 player roles <https://theathletic.com/3473297/2022/08/10/player-roles-the-athletic/>`_.
 """
 
 #importing necessary libraries
