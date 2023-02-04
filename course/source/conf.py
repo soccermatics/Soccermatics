@@ -49,7 +49,8 @@ sphinx_gallery_conf = {
                                        '../lessons/lesson6',
                                        '../lessons/lesson7',
                                        '../lessons/lesson8',
-                                       '../lessons/lesson9'
+                                       '../lessons/lesson9',
+                                       '../lessons/lesson10'
                                        ])}
 
 # -- Options for HTML output -------------------------------------------------

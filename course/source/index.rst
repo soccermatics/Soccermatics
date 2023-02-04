@@ -306,6 +306,14 @@ Contents
    gallery/lesson9/plot_ClusteringProgressivePasses
    gallery/lesson9/plot_ClusteringPlayers
 
+.. toctree::
+   :maxdepth: 1
+   :caption: 10, Making a Web App:
+
+   lesson10/Streamlit.md
+   lesson10/Twelve.md
+   lesson10/MoreFeatures.md
+
  
 
 
