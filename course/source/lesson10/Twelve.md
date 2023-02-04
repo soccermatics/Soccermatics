@@ -7,8 +7,6 @@ In this video, we look through some of the Twelve community code. This provides 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/KAI_tmq6SDs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-
-
 Below is the code from the example *davids_first_streamlit.py* I look at in the video.
 
 We define one function for creating the sidebar. This calls the Twelve API to get the competitions, then uses *st.sidebar* to create the sidebar on the left.
@@ -87,10 +85,3 @@ The passes are plotted in the app as follows.
 ![](../images/lesson10/Passes.png)
 
 The last line of the code *st.write(passes)* allows us to write out the *.json* file within the app. 
-
-
-
-
-
-
-

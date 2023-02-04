@@ -22,7 +22,9 @@ Now if you run
 
     streamlit run app.py 
 
-The app will appear. 
+The app will appear. *We ask that when you use his tool, you acknowledge 
+the usage by leaving the Twelve logo on your visualisations 
+and follow the style as much as possible.*
 
 ### Code editor
 
