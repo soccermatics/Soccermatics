@@ -71,8 +71,8 @@ for match in matches:
     df_track.x = df_track.x.apply(lambda cell: cell*105/120)
     df_track.y = df_track.y.apply(lambda cell: cell*68/80)
     #append event and trackings to a dataframe
-    shot_df = pd.concat([shot_df, shots])
-    track_df = pd.concat([track_df, df_track])
+    shot_df = pd.concat([shot_df, shots], ignore_index = True)
+    track_df = pd.concat([track_df, df_track], ignore_index = True)
 
 #reset indicies    
 shot_df.reset_index(drop=True, inplace=True)    
@@ -329,8 +329,8 @@ for match in matches2:
     df_track.x = df_track.x.apply(lambda cell: cell*105/120)
     df_track.y = df_track.y.apply(lambda cell: cell*68/80)
     
-    shot_df2 = pd.concat([shot_df2, shots])
-    track_df2 = pd.concat([track_df2, df_track])
+    shot_df2 = pd.concat([shot_df2, shots], ignore_index = True)
+    track_df2 = pd.concat([track_df2, df_track], ignore_index = True)
 
 #reset indicies and remove shots that were not open play or when the goalkeeper was not tracked
 shot_df2 = shot_df2.loc[shot_df2["sub_type_name"] == "Open Play"]   
