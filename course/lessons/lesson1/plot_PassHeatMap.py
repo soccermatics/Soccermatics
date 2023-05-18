@@ -76,7 +76,7 @@ for idx in match_ids:
         #keep only danger passes
         danger_passes_period = passes.loc[pass_to_shot]
         #concatenate dataframe with a previous one to keep danger passes from the whole tournament
-        danger_passes = pd.concat([danger_passes, danger_passes_period])
+        danger_passes = pd.concat([danger_passes, danger_passes_period], ignore_index = True)
 
 ##############################################################################
 # Plotting location of danger passes

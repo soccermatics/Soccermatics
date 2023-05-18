@@ -35,7 +35,7 @@ for i in range(11):
     path = os.path.join(str(pathlib.Path().resolve().parents[0]), 'possession_chain', file_name)
     with open(path) as f:
         data = json.load(f)
-    df = pd.concat([df, pd.DataFrame(data)])
+    df = pd.concat([df, pd.DataFrame(data)], ignore_index = True)
 df = df.reset_index()
 
 ##############################################################################

@@ -73,7 +73,7 @@ for idx in match_ids:
             danger_passes_period = pass_df.loc[pass_to_shot]
             
             #will need later all danger passes
-            danger_passes_df = pd.concat([danger_passes_df, danger_passes_period])
+            danger_passes_df = pd.concat([danger_passes_df, danger_passes_period], ignore_index = True)
             
             #adding number of passes, shots and danger passes from a game 
             passes += len(pass_df)

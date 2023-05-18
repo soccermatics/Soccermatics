@@ -53,7 +53,7 @@ for i in range(13):
     path = os.path.join(str(pathlib.Path().resolve().parents[0]), 'data', 'Wyscout', file_name)
     with open(path) as f:
         data = json.load(f)
-    train = pd.concat([train, pd.DataFrame(data)])
+    train = pd.concat([train, pd.DataFrame(data)], ignore_index = True)
 #potential data collection error handling
 train = train.loc[train.apply (lambda x: len(x.positions) == 2, axis = 1)]
 

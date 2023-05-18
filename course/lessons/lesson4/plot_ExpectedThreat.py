@@ -34,7 +34,7 @@ for i in range(13):
     path = os.path.join(str(pathlib.Path().resolve().parents[0]), 'data', 'Wyscout', file_name)
     with open(path) as f:
         data = json.load(f)
-    df = pd.concat([df, pd.DataFrame(data)])
+    df = pd.concat([df, pd.DataFrame(data)], ignore_index = True)
 
 ##############################################################################
 # Actions moving the ball 
