@@ -61,18 +61,22 @@ It is free for all EU citizens and available as a
 paid course for those outside the EU. The university includes
 tutorials with me and a teaching assistant,
 individual hand-ins and group work. 
-**Application to participate in the course opens in Feb/March each year** (i.e. half a year before the course start).
+**Application to participate in the course opens in March/April each year** (i.e. half a year before the course start). 
+Late registrations are `sometimes available<https://www.universityadmissions.se/intl/search?period=18&freeText=football>`_.
 
 **Professionals:** If you are a part of a footballing
 organisation, then it is possible to take this course as part of
 further education. The professional course has less
 formal requirements for entry, allowing
 your organisitaion to benefit from it. We help participants
-to work with their own data on the assignments. In 2022, we have a group of
-participants from the English FA
-on the course. The course will run for professionals in January 2023 and the cost is €1250 per person. 
-Please email `course@twelve.football
-<mailto:course@twelve.football>`_ for information.
+to work with their own data on the assignments. The course 
+ran for professionals in January 2023 and was attended by data scientists 
+from Europes big leagues (including the Premier League), national organisations and 
+clubs from all over the world. 
+
+It will run again in September 2023. The cost is €1450 per person (discounts if several
+participants from same organisation). It is run by `Twelve Football<https://twelve.football/course>`_ where 
+you can find more info and register.
 
 **Non-enrolled students:** Several students
 (some of whom are now working for football clubs)
