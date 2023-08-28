@@ -271,6 +271,7 @@ Contents
    lesson5/DealingRandomness.md
    gallery/lesson5/plot_SimulateMatches
    lesson5/Prediction.md
+   lesson5/PoiBin.md
    gallery/lesson2/plot_PassCompare
    lesson5/TeamKPIs.md
    gallery/lesson5/plot_PointsMovingAverage
