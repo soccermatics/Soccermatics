@@ -1,8 +1,8 @@
 """
-Z and t-tests
+Using t-tests
 =========================================
-In this tutorial we demonstrate how to check if values are significantly different from each other 
-using z-tests and t-tests
+In this tutorial we demonstrate how to check if values are significantly different 
+from each other using t-tests
 """
 
 import pandas as pd
@@ -62,118 +62,108 @@ summary2 = corners_by_game.merge(teams_df[["name", "teamId"]], how = "left", on 
 
 
 
-##############################################################################
-# Two-sided z-test
-# ----------------------------
-#
-# We use two-sided z-test to check if Manchester City take 8 corners per game. We set the significance level at 0.05.
-# At this significance level, there's no reason to reject the null hypothesis. Therefore, we claim that City takes
-# 8 corners per game.
-
-from statsmodels.stats.weightstats import ztest
-
-#get city corners
-city_corners = summary2.loc[summary2["name"] == 'Manchester City']["counts"]
-
-#test 
-t, pvalue = ztest(city_corners,  value=8)
-#checking outcome
-if pvalue < 0.05:
-    print("P-value amounts to", pvalue, "- We reject null hypothesis - Manchester City do not take 8 corners per game")
-else:
-    print("P-value amounts to", pvalue, " - We do not reject null hypothesis - Manchester City take 8 corners per game")
-
-##############################################################################
-# One-sided z-test
-# ----------------------------
-#
-# We use one-sided z-test to check if Manchester City take more than 6 corners per game. We set the significance level at 0.05.
-# At this significance level, we reject the null hypothesis. Therefore, we claim that City takes
-# more than 6 corners per game.
-
-t, pvalue = ztest(city_corners,  value=6, alternative = "larger")
-if pvalue < 0.05:
-    print("P-value amounts to", pvalue, "- We reject null hypothesis - Manchester City take more than 6 corners per game")
-else:
-    print("P-value amounts to", pvalue, " - We do not reject null hypothesis - Manchester City do not take 6 more corners per game")
-
-##############################################################################
-# One-sample two-sided t-test
-# ----------------------------
-#
-# We use one-sample t-test to check if Leicester City take different number of corners than the league average. We set the significance level at 0.05.
-# At this significance level, there's no reason to reject the null hypothesis. Therefore, we claim that Leicester City take
-# more than 6 corners per game. 
-
-mean = summary["counts"].mean()
-std = summary["counts"].std()
-
-
-from scipy.stats import ttest_1samp
-leicester_corners = summary.loc[summary["name"] == "Leicester City"]["counts"].iloc[0]
-t, pvalue = ttest_1samp(summary["counts"], leicester_corners)
-
-if pvalue < 0.05:
-    print("P-value amounts to", pvalue, "- We reject null hypothesis - Leicester City do not take average number of corners than league average")
-else:
-    print("P-value amounts to", pvalue, " - We do not reject null hypothesis - Leicester City take average number of corners than league average")
-
-##############################################################################
+###############################################################################
 # One-sample one-sided t-test
 # ----------------------------
 #
-# We use one-sample t-test to check if Arsenal took more number of corners than the league average. We set the significance level at 0.05.
-# At this significance level, we reject the null hypothesis. Therefore, we claim that Arsenal take
-# more than 6 corners per game. 
+# Imagine that it is established that teams tyoically get 6 corners in a match in
+# football. City are an attacking team and we might think that they get more corners than
+# this. Let's start by plotting a distribution of City's corners.
+# 
+
+
+team_name= 'Manchester City'
+
+city_corners = summary2.loc[summary2["name"] == 'Manchester City']["counts"]
+
+def FormatFigure(ax):
+    ax.legend(loc='upper left')
+    ax.set_ylim(0,0.25) 
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.set_ylabel('')
+    ax.set_xlabel('Corners')
+    ax.set_ylabel('Proportion of games')
+    ax.set_xticks(np.arange(0,21,step=1)) 
+
+ 
+fig,ax1=plt.subplots(1,1)
+ax1.hist(city_corners, np.arange(0.01,20.5,1), color='lightblue', edgecolor = 'white',linestyle='-',alpha=0.5, label=team_name, density=True,align='right')
+FormatFigure(ax1)
+#ax2.hist(df['Happiness'][didntspend], np.arange(0.01,10.5,1), alpha=0.5, edgecolor = 'black', label='Did not spend on saving time',  density=True,align='right')
+#FormatFigure(ax2)
+
+mean = city_corners.mean()
+std = city_corners.std()
+
+print('City typically had %.2f  plus/minus %.2f corners per match in the 2017/18 season.'%(mean,std))
+
+
+###############################################################################
+# 
+# We use can use a one-sided t-test to check if Manchester City took
+# more corners than we might expect due to normal variation in the number
+# of corners we tend to see.  We set the significance level at 0.05.
+
 
 from scipy.stats import ttest_1samp
-arsenal_corners = summary.loc[summary["name"] == "Arsenal"]["counts"].iloc[0]
-t, pvalue = ttest_1samp(summary["counts"], arsenal_corners, alternative='less')
+t, pvalue = ttest_1samp(city_corners,popmean=6)
 
+print("The t-staistic is %.2f and the P-value is %.2f."%(t,pvalue))
 if pvalue < 0.05:
-    print("P-value amounts to", pvalue, "- We reject null hypothesis - Arsenal take more corners than league average")
+    print("We reject null hypothesis - " + team_name + " typically take more than 6 corners per match.")
 else:
-    print("P-value amounts to", pvalue, " - We do not reject null hypothesis - Arsenal do not take more corners than league average")
+    print("We cannot reject null hypothesis - " + team_name + " do not typically take more than 6 corners per match.")
+
+###############################################################################
+# 
+# At this significance level, there's a reason to reject the null hypothesis. 
+# It is reasonable to say that City take more corners than what is considered normal for a typical team (i.e. 6).
+
 
 
 ##############################################################################
 # Two-sample two-sided t-test
 # ----------------------------
 #
-# We use two-sample t-test to check if Liverpool took different number of corners per game than the league average. We set the significance level at 0.05.
-# At this significance level, there is no reason to reject the null hypothesis. Therefore, we claim that Liverpool took
-# the same number of corners as United. 
+# Here we test if Liverpool took a different number of corners per game than Manchester United. 
+# We set the significance level at 0.05.
 
 #check if united takes the same average number of corners per game as liverpool
 liverpool_corners = summary2.loc[summary2["name"] == 'Liverpool']["counts"]
-united_corners = summary2.loc[summary2["name"] == 'Manchester United']["counts"]
+everton_corners = summary2.loc[summary2["name"] == 'Everton']["counts"]
 
-from scipy.stats import ttest_ind
-t, pvalue  = ttest_ind(a=liverpool_corners, b=united_corners, equal_var=True)
+mean = liverpool_corners.mean()
+std = liverpool_corners.std()
+print('Liverpool typically had %.2f plus/minus %.2f corners per match in the 2017/18 season.'%(mean,std))
+std_error=std/np.sqrt(len(liverpool_corners))
+print('The standard error in the number of corners per match is %.4f'%std_error)
 
-if pvalue < 0.05:
-    print("P-value amounts to", pvalue, "- We reject null hypothesis - Liverpool took different number of corners per game than United")
-else:
-    print("P-value amounts to", pvalue, " - We do not reject null hypothesis - Liverpool took the same number of corners per game as United")
+mean = everton_corners.mean()
+std = everton_corners.std()
+print('Everton typically had %.2f plus/minus %.2f corners per match in the 2017/18 season.'%(mean,std))
+std_error=std/np.sqrt(len(everton_corners))
+print('The standard error in the number of corners per match is %.4f'%std_error)
 
 
 ##############################################################################
-# Two-sample one-sided t-test
-# ----------------------------
-#
-# We use two-sample t-test to check if Manchester City took more corners per game than Newcastle. We set the significance level at 0.05.
-# At this significance level, we reject the null hypothesis. Therefore, we claim that City took
-# more corners than Newcastle. 
+#  Now let's plot the corners as a histogram.
 
-city_corners = summary2.loc[summary2["name"] == 'Manchester City']["counts"]
-castle_corners = summary2.loc[summary2["name"] == 'Newcastle United']["counts"]
+fig,ax=plt.subplots(1,1)
+ax.hist(liverpool_corners, np.arange(0.01,15.5,1), color='red', edgecolor = 'white',linestyle='-',alpha=1.0, label="Liverpool", density=True,align='right')
+ax.hist(everton_corners, np.arange(0.01,15.5,1), alpha=0.25, color='blue', edgecolor = 'black', label='Everton',  density=True,align='right')
+FormatFigure(ax)
 
 from scipy.stats import ttest_ind
-t, pvalue  = ttest_ind(a=city_corners, b=castle_corners, equal_var=True, alternative = "greater")
+t, pvalue  = ttest_ind(a=liverpool_corners, b=everton_corners, equal_var=True)
 
+print("The t-staistic is %.2f and the P-value is %.2f."%(t,pvalue))
 if pvalue < 0.05:
-    print("P-value amounts to", pvalue, "- We reject null hypothesis - City took more corners per game than Newcastle")
+    print("We reject null hypothesis - Liverpool took different number of corners per game than Everton")
 else:
-    print("P-value amounts to", pvalue, " - We do not reject null hypothesis - City did not  take the more corners per game than Newcastle")
+    print("We cannot reject the null hypothesis that Liverpool took the same number of corners per game as Everton")
 
 
+##############################################################################
+# The t-statistic (roughly) measures how many standard errors 
+# the two means are from each other. In this 
