@@ -126,10 +126,10 @@ else:
 # Two-sample two-sided t-test
 # ----------------------------
 #
-# Here we test if Liverpool took a different number of corners per game than Manchester United. 
-# We set the significance level at 0.05.
+# Here we compare Liverpool and Everton in terms of corners per match. 
+# 
 
-#check if united takes the same average number of corners per game as liverpool
+
 liverpool_corners = summary2.loc[summary2["name"] == 'Liverpool']["counts"]
 everton_corners = summary2.loc[summary2["name"] == 'Everton']["counts"]
 
@@ -154,6 +154,12 @@ ax.hist(liverpool_corners, np.arange(0.01,15.5,1), color='red', edgecolor = 'whi
 ax.hist(everton_corners, np.arange(0.01,15.5,1), alpha=0.25, color='blue', edgecolor = 'black', label='Everton',  density=True,align='right')
 FormatFigure(ax)
 
+##############################################################################
+
+# Here we test if Liverpool had a different average corners per game than Everton. 
+# We set the significance level at 0.05.
+
+
 from scipy.stats import ttest_ind
 t, pvalue  = ttest_ind(a=liverpool_corners, b=everton_corners, equal_var=True)
 
@@ -163,7 +169,6 @@ if pvalue < 0.05:
 else:
     print("We cannot reject the null hypothesis that Liverpool took the same number of corners per game as Everton")
 
-
 ##############################################################################
 # The t-statistic (roughly) measures how many standard errors 
-# the two means are from each other. In this 
+# the two means are from each other. 
