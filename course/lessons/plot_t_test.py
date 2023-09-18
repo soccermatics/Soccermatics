@@ -90,8 +90,7 @@ def FormatFigure(ax):
 fig,ax1=plt.subplots(1,1)
 ax1.hist(city_corners, np.arange(0.01,20.5,1), color='lightblue', edgecolor = 'white',linestyle='-',alpha=0.5, label=team_name, density=True,align='right')
 FormatFigure(ax1)
-#ax2.hist(df['Happiness'][didntspend], np.arange(0.01,10.5,1), alpha=0.5, edgecolor = 'black', label='Did not spend on saving time',  density=True,align='right')
-#FormatFigure(ax2)
+
 
 mean = city_corners.mean()
 std = city_corners.std()
