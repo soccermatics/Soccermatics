@@ -13,7 +13,7 @@ Twelve football have made a set of our tools available to get you started. You c
 
 You should then create a Python environment by first going in to Anaconda and opening a terminal. Then chnage directory to the *twelve-st-community* folder. And set up an environment by running:
 
-    conda create --name streamlit_env
+    conda create --name streamlit_env python=3.9
     conda activate streamlit_env
     conda install pip 
     pip install -r requirements.txt
