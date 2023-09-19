@@ -34,7 +34,7 @@ On the next page I talk through the code and how it works. To complete this you 
 
 This Stremalit App won't work unless you have credentials for the Twelve API. We provide this access to people on the Soccermatics Pro course only. If you work for a football club and would like to trial this then please [contact us](mailto:hello@twelve.football). 
 
-You then need to make a folder called *.stramlit* and a file *secrets.toml* which contains the text
+You then need to make a folder called *.streamlit* and a file *secrets.toml* which contains the text
 
     TWELVE_USERNAME = PROVIDED TO YOU
     TWELVE_PASSWORD = PROVIDED TO YOU
