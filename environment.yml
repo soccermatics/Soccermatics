@@ -23,7 +23,7 @@ dependencies:
   - tensorflow=2.9.1
   - umap-learn=0.5.3
   - pip:
-      - adjustText=0.7.3
+      - adjustText
       - highlight-text=0.2
       - kloppy=3.4.0
       - mplsoccer=1.1.3
