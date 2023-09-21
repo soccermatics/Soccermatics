@@ -27,7 +27,7 @@ dependencies:
       - highlight-text
       - kloppy
       - mplsoccer
-      - sphinxcontrib-youtube=
+      - sphinxcontrib-youtube
       - myst-parser
       - ruptures
 
