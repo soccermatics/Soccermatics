@@ -37,7 +37,7 @@ data["Min"] = data["Min"].apply(lambda x: x.replace(",", "")).astype(int)
 
 data = data.loc[data["Min"] > 500]
 data = data.reset_index(drop = True)
-data = pd.to_numeric(data) 
+data = data._convert(numeric=True)
 data = data.fillna(0)
 X = data.iloc[:, 11:]
 
