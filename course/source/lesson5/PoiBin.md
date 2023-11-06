@@ -1,5 +1,10 @@
-They Should Have Won
-====================
+Calculating match outcomes
+==========================
+
+**This page is contribted by Ulrik Brandes**
+
+They should have won?
+---------------------
 
 After predicting future scores based on past performance,
 let us now look at some counterfactual history. 
@@ -7,7 +12,8 @@ What could have been, what should have been,
 given the performance of two teams in a match?
 If only Kolo Muani had slotted _that_ ball past Martinez!
 
-<iframe width="640" height="360" src="https://youtu.be/zhEWqfP6V_w?t=87" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+
+<iframe width="640" height="360" src="https://youtu.be/zhEWqfP6V_w?t=87" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 And there are so many universes
 in which Italy _did_ reach the playoff final
@@ -16,18 +22,10 @@ but in this one it were North Macedonia who scored the late winner
 on what was only their fourth shot at goal,
 all of them from outside the box.
 
-|shot map|xG race chart|
-|:---:|:--:|
-|TWELVE chart|TWELVE chart|
-
 If a team is creating one chance after another, 
 but the other scores on a long-range shot,
 we feel that good or bad luck (depending on which team's side you are on) 
 is involved. 
-Unless you believe in the involvement of some higher powers,
-or other sorts of interference,
-there should be a way to quantify
-just how much luck is associated with such an outcome.
 
 For individual attempts, this has already been done in Lesson 2.
 Goal probabilities quantify how likely it is that a shot results in a goal,
@@ -94,15 +92,14 @@ of this phenomenon.
 It should surprise no one that there are teams and players
 who go to great lengths to "win" penalties.
 
-### 1000 Matches in the time of 1 (but exact rather than approximated)
+### 1000 Matches in the time of 1
 
-At the time of this writing,
-the above tool determines outcome probabilities by simulating 10,000 match instances
+The above tool determines outcome probabilities by simulating 10,000 match instances
 and recording relative frequencies of results. 
 This is a common approach to approximate complicated distributions,
 but unnecessary in the present case.
 
-It is algorithmically feasible and indeed more efficient
+It is more efficient
 to calculate probabilities directly and exactly.
 It is, however, a bit more complicated than the binomial distribution,
 because combinations of outcomes with the same number of goals no longer have the same probability.
