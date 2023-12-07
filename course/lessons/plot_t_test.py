@@ -46,17 +46,15 @@ teams_df = teams_df.rename(columns={"wyId": "teamId"})
 # Preparing the dataset
 # ----------------------------
 #
-# First, we take out corners. Then, we sum them by team. We also merge it together with team dataframe to keep their names.
+# First, we group all the events for each team. Then, for each team group we sum the number of corners. We also merge it together with team dataframe to keep their names.
 # Then we repeat the same, but calculate corners taken by each team per game. 
-    
-#get corners
-corners = train.loc[train["subEventName"] == "Corner"]
+
 #count corners by team
-corners_by_team = corners.groupby(['teamId']).size().reset_index(name='counts')
+corners_by_team = train.groupby(by=['teamId']).apply(lambda grp: (grp['subEventName']=='Corner').sum()).reset_index(name='counts')
 #merge with team name
 summary = corners_by_team.merge(teams_df[["name", "teamId"]], how = "left", on = ["teamId"])
 #count corners by team by game
-corners_by_game = corners.groupby(['teamId', "matchId"]).size().reset_index(name='counts')
+corners_by_game = train.groupby(by=['matchId', 'teamId']).apply(lambda grp: (grp['subEventName']=='Corner').sum()).reset_index(name='counts')
 #merge with team name
 summary2 = corners_by_game.merge(teams_df[["name", "teamId"]], how = "left", on = ["teamId"])
 
@@ -162,7 +160,7 @@ FormatFigure(ax)
 from scipy.stats import ttest_ind
 t, pvalue  = ttest_ind(a=liverpool_corners, b=everton_corners, equal_var=True)
 
-print("The t-staistic is %.2f and the P-value is %.2f."%(t,pvalue))
+print("The t-statistic is %.2f and the P-value is %.2f."%(t,pvalue))
 if pvalue < 0.05:
     print("We reject null hypothesis - Liverpool took different number of corners per game than Everton")
 else:
