@@ -54,7 +54,7 @@ corners_by_team = train.groupby(by=['teamId']).apply(lambda grp: (grp['subEventN
 #merge with team name
 summary = corners_by_team.merge(teams_df[["name", "teamId"]], how = "left", on = ["teamId"])
 #count corners by team by game
-corners_by_game = train.groupby(by=['matchId', 'teamId']).apply(lambda grp: (grp['subEventName']=='Corner').sum()).reset_index(name='counts')
+corners_by_game = train.groupby(by=['teamId', 'matchId']).apply(lambda grp: (grp['subEventName']=='Corner').sum()).reset_index(name='counts')
 #merge with team name
 summary2 = corners_by_game.merge(teams_df[["name", "teamId"]], how = "left", on = ["teamId"])
 
