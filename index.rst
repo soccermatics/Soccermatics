@@ -74,7 +74,7 @@ ran for professionals in January 2023 and was attended by data scientists
 from Europes big leagues (including the Premier League), national organisations and 
 clubs from all over the world. 
 
-It will run again in September 2023. The cost is €1450 per person (discounts if several
+It will run again in September 2023. The cost is €1600 per person (discounts if several
 participants from same organisation). It is run by `Twelve Football<https://twelve.football/course>`_ where 
 you can find more info and register.
 
