@@ -70,11 +70,11 @@ further education. The professional course has less
 formal requirements for entry, allowing
 your organisitaion to benefit from it. We help participants
 to work with their own data on the assignments. The course 
-ran for professionals in January 2023 and was attended by data scientists 
-from Europes big leagues (including the Premier League), national organisations and 
+ran for professionals ran twice in 2023 and was attended by data scientists 
+from Europes big leagues (including sevral from the Premier League), national organisations and 
 clubs from all over the world. 
 
-It will run again in September 2023. The cost is €1600 per person (discounts if several
+It will run again in September 2024. The cost is €1600 per person (discounts if several
 participants from same organisation). It is run by `Twelve Football<https://twelve.football/course>`_ where 
 you can find more info and register.
 
