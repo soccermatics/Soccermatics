@@ -5,11 +5,11 @@ This is the course webpage for Soccermatics: mathematical modelling of football 
 To build the site locally you need to install:
 
 conda install sphinx
-conda env update --file environment.yml 
 pip install sphinx-gallery
 pip install sphinxcontrib.youtube
 pip install myst_parser
 pip install sphinx_rtd_theme
+conda env update --file environment.yml 
 
 
 Then you can make it with:
