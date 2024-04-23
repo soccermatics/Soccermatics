@@ -64,8 +64,8 @@ individual hand-ins and group work.
 **Application to participate in the course opens in Feb/March each year** (i.e. half a year before the course start).
 
 **Professionals:** If you are a part of a footballing
-organisation, then it is possible to take this course as part of
-further education. The professional course has less
+organisation, then it is possible to take this between September and November each year. 
+The professional course has less
 formal requirements for entry, allowing
 your organisitaion to benefit from it. We help participants
 to work with their own data on the assignments. In 2022, we have a group of
