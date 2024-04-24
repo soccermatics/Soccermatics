@@ -62,7 +62,7 @@ paid course for those outside the EU. The university includes
 tutorials with me and a teaching assistant,
 individual hand-ins and group work. 
 **Application to participate in the course opens in March/April each year** (i.e. half a year before the course start). 
-Late registrations are `sometimes available<https://www.universityadmissions.se/intl/search?period=18&freeText=football>`_.
+Late registrations are `sometimes available <https://www.universityadmissions.se/intl/search?period=18&freeText=football>`_.
 
 **Professionals:** If you are a part of a footballing
 organisation, then it is possible to take this course as part of
@@ -75,7 +75,7 @@ from Europes big leagues (including sevral from the Premier League), national or
 clubs from all over the world. 
 
 It will run again in September 2024 and 2025. The cost is €1600 per person (discounts if several
-participants from same organisation). It is run by `Twelve Football<https://twelve.football/course>`_ where 
+participants from same organisation). It is run by `Twelve Football <https://twelve.football/course>`_ where 
 you can find more info and register.
 
 **Non-enrolled students:** Several students
