@@ -51,7 +51,7 @@ getting kicked by horses, we can quickly get a feeling
 for the theory. **Abstract ideas become more concrete
 with applications.**
 
-Three ways to do this course
+Two ways to do this course
 ============================
 
 **Students:** This is 5 credit course at `Uppsala University
@@ -78,24 +78,7 @@ It will run again in September 2024 and 2025. The cost is €1600 per person (di
 participants from same organisation). It is run by `Twelve Football <https://twelve.football/course>`_ where 
 you can find more info and register.
 
-**Non-enrolled students:** Several students
-(some of whom are now working for football clubs)
-have completed this course through online study groups.
-To do this, you need to find a group, since all final projects
-are in groups. If you would like to do this, please go in to the
-`Slack channel
-<https://join.slack.com/t/mathematicalm-fhj6138/shared_invite/zt-1ib8l2gbb-LVCU4V0anGk7SBY2fmLKGg>`_ 
-and find some like-minded people to work with. 
-
-If you complete all three assignments for the course message
-David Sumpter in the Slack channel, send him your assignments,
-and if they are complete then he can send you a certificate
-saying you have completed the course. Unfortunately, I am not able to provide feedback for non-enrolled
-students along the way. But often by working together in the Slack group, dedicated
-students find a way of learning together.
-
-**If you pass the Uppsala course, the professional course,
-or are issued with a certificate from the non-enrolled course, it is because you have shown the skills 
+**If you pass the Uppsala course or the professional course, it is because you have shown the skills 
 needed to be a football data scientist. This means that clubs can rely on the certificate when hiring data scientists.**
 
 Required Background
