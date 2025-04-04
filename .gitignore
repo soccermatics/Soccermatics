@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Directory used by JetBrains IDEs 
+.idea
+
 # Distribution / packaging
 .Python
 build/
