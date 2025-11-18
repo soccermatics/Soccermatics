@@ -13,7 +13,7 @@ Twelve football have made a set of our tools available to get you started. You c
 
 You should then create a Python environment by first going in to Anaconda and opening a terminal. Then chnage directory to the *twelve-st-community* folder. And set up an environment by running:
 
-    conda create --name streamlit_env
+    conda create --name streamlit_env python=3.9
     conda activate streamlit_env
     conda install pip 
     pip install -r requirements.txt
@@ -34,7 +34,7 @@ On the next page I talk through the code and how it works. To complete this you 
 
 This Stremalit App won't work unless you have credentials for the Twelve API. We provide this access to people on the Soccermatics Pro course only. If you work for a football club and would like to trial this then please [contact us](mailto:hello@twelve.football). 
 
-You then need to make a folder called *.stramlit* and a file *secrets.toml* which contains the text
+You then need to make a folder called *.streamlit* and a file *secrets.toml* which contains the text
 
     TWELVE_USERNAME = PROVIDED TO YOU
     TWELVE_PASSWORD = PROVIDED TO YOU

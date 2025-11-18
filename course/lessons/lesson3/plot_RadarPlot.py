@@ -418,10 +418,7 @@ percentiles = [int(stats.percentileofscore(summary_per_90[column], salah[column]
 names = ["non-penalty Expected Goals", "non-penalty Goals", "Assists", "Key Passes", "Smart Passes", "Passes Ending in Final Third", "Passes Received in Final Third", "Offensive Ground Duels Won", "Air Duels Won"]
 slice_colors = ["blue"] * 2 + ["green"] * 5 + ["red"] * 2
 text_colors = ["white"]*9
-font_normal = FontManager(("https://github.com/google/fonts/blob/main/apache/roboto/"
-                           "Roboto%5Bwdth,wght%5D.ttf?raw=true"))
-font_bold = FontManager(("https://github.com/google/fonts/blob/main/apache/robotoslab/"
-                         "RobotoSlab%5Bwght%5D.ttf?raw=true"))
+
 #PIZZA PLOT
 baker = PyPizza(
     params=names,   
@@ -446,12 +443,10 @@ fig, ax = baker.make_pizza(
         zorder=2, linewidth=1
     ),                   # values to be used when plotting slices
     kwargs_params=dict(
-        color="#000000", fontsize=12,
-        fontproperties=font_normal.prop, va="center"
+        color="#000000", fontsize=12, va="center"
     ),                   # values to be used when adding parameter
     kwargs_values=dict(
         color="#000000", fontsize=12,
-        fontproperties=font_normal.prop, zorder=3,
         bbox=dict(
             edgecolor="#000000", facecolor="cornflowerblue",
             boxstyle="round,pad=0.2", lw=1
@@ -465,8 +460,7 @@ for i, text in enumerate(texts):
     text.set_text(str(values[i]))
 # add title
 fig.text(
-    0.515, 0.97, "Mohammed Salah per 90 - Liverpool FC", size=18,
-    ha="center", fontproperties=font_bold.prop, color="#000000"
+    0.515, 0.97, "Mohammed Salah per 90 - Liverpool FC", size=18
 )
 
 # add subtitle
@@ -474,7 +468,7 @@ fig.text(
     0.515, 0.942,
     "Premier League | Season 2017-18",
     size=15,
-    ha="center", fontproperties=font_bold.prop, color="#000000"
+    ha="center", color="#000000"
 )
 plt.show()
 
@@ -562,13 +556,6 @@ percentiles = [int(stats.percentileofscore(summary_adjusted[column], salah_adjus
 names = names = ["non-penalty Expected Goals", "non-penalty Goals", "Assists", "Key Passes", "Smart Passes", "Passes Ending in Final Third", "Passes Received in Final Third", "Offensive Ground Duels Won", "Air Duels Won"]
 
 
-font_normal = FontManager(("https://github.com/google/fonts/blob/main/apache/roboto/"
-                           "Roboto%5Bwdth,wght%5D.ttf?raw=true"))
-font_italic = FontManager(("https://github.com/google/fonts/blob/main/apache/roboto/"
-                           "Roboto-Italic%5Bwdth,wght%5D.ttf?raw=true"))
-font_bold = FontManager(("https://github.com/google/fonts/blob/main/apache/robotoslab/"
-                         "RobotoSlab%5Bwght%5D.ttf?raw=true"))
-
 baker = PyPizza(
     params=names,                  # list of parameters
     straight_line_color="#000000",  # color for straight lines
@@ -592,11 +579,11 @@ fig, ax = baker.make_pizza(
     ),                   # values to be used when plotting slices
     kwargs_params=dict(
         color="#000000", fontsize=12,
-        fontproperties=font_normal.prop, va="center"
+         va="center"
     ),                   # values to be used when adding parameter
     kwargs_values=dict(
         color="#000000", fontsize=12,
-        fontproperties=font_normal.prop, zorder=3,
+        zorder=3,
         bbox=dict(
             edgecolor="#000000", facecolor="cornflowerblue",
             boxstyle="round,pad=0.2", lw=1
@@ -607,7 +594,7 @@ fig, ax = baker.make_pizza(
 # add title
 fig.text(
     0.515, 0.97, "Mohammed Salah per 90 (possesion adjusted) - Liverpool FC", size=18,
-    ha="center", fontproperties=font_bold.prop, color="#000000"
+    ha="center", color="#000000"
 )
 
 # add subtitle
@@ -615,7 +602,7 @@ fig.text(
     0.515, 0.942,
     "Percentile Rank vs Premier League Forwards | Season 2017-18",
     size=15,
-    ha="center", fontproperties=font_bold.prop, color="#000000"
+    ha="center",  color="#000000"
 )
 
 plt.show()

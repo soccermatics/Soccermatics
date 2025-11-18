@@ -30,7 +30,6 @@ epl = epl.rename(columns={'FTHG': 'HomeGoals', 'FTAG': 'AwayGoals'})
 epl.head()
 
 epl = epl[:-10]
-epl.mean()
 
 ###################################################
 # Perform the regression
