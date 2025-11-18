@@ -62,8 +62,11 @@ df_shots = df_all_events[(df_all_events['type_name'] == 'Shot')]
 #Only keep the necessary columns about shots
 df_shots = df_shots[['match_id', 'possession', 'time_seconds']]
 #Take out the open play successful passes from the possession team
-df_passes = df_all_events[(df_all_events['type_name'] == 'Pass') & (df_all_events['outcome_name'].isnull()) & (df_all_events['possession_team_id'] == df_all_events['team_id'])]
-
+df_passes = df_all_events[(df_all_events['type_name'] == 'Pass') 
+                          & (df_all_events['outcome_name'].isnull()) 
+                          & (df_all_events['possession_team_id'] == df_all_events['team_id'])
+                          & (~df_all_events.sub_type_name.isin(['Throw-in','Corner','Free Kick', 'Kick Off', 'Goal Kick']))
+                          ]
 # Merge shots and passes on possession and match_id
 # Use a inner join to keep only passes that have a matching shot in the same possession  
 df_merged = df_shots.merge(df_passes, on=['possession', 'match_id'], how='inner',suffixes=('_shot',''))
