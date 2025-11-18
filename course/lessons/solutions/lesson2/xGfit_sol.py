@@ -41,7 +41,7 @@ def prepare_data(shots):
     shots["Distance"] = np.sqrt(shots["X"]**2 + shots["C"]**2)
     shots["Angle"] = np.where(np.arctan(7.32 * shots["X"] / (shots["X"]**2 + shots["C"]**2 - (7.32/2)**2)) > 0, np.arctan(7.32 * shots["X"] /(shots["X"]**2 + shots["C"]**2 - (7.32/2)**2)), np.arctan(7.32 * shots["X"] /(shots["X"]**2 + shots["C"]**2 - (7.32/2)**2)) + np.pi)
     #if you ever encounter problems (like you have seen that model treats 0 as 1 and 1 as 0) while modelling - change the dependant variable to object 
-    shots["Goal"] = shots.tags.apply(lambda x: 1 if {'id':101} in x else 0).astype(object)
+    shots["Goal"] = shots.tags.apply(lambda x: 1 if {'id':101} in x else 0)
     return shots
 
 headers = prepare_data(headers)
@@ -60,12 +60,12 @@ print(nonheaders_model.summary())
 #assigning xG
 #headers
 b_head = headers_model.params
-xG = 1/(1+np.exp(b_head[0]+b_head[1]*headers['Distance'] + b_head[2]*headers['Angle'])) 
+xG = 1/(1+np.exp(-(b_head[0]+b_head[1]*headers['Distance'] + b_head[2]*headers['Angle']))) 
 headers = headers.assign(xG = xG)
 
 #non-headers 
 b_nhead = nonheaders_model.params
-xG = 1/(1+np.exp(b_nhead[0]+b_nhead[1]*non_headers['Distance'] + b_nhead[2]*non_headers['Angle'])) 
+xG = 1/(1+np.exp(-(b_nhead[0]+b_nhead[1]*non_headers['Distance'] + b_nhead[2]*non_headers['Angle']))) 
 non_headers = non_headers.assign(xG = xG)
 
 #2

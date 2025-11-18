@@ -78,7 +78,7 @@ shots["C"] = shots.positions.apply(lambda cell: abs(cell[0]['y'] - 50) * 68/100)
 shots["Distance"] = np.sqrt(shots["X"]**2 + shots["C"]**2)
 shots["Angle"] = np.where(np.arctan(7.32 * shots["X"] / (shots["X"]**2 + shots["C"]**2 - (7.32/2)**2)) > 0, np.arctan(7.32 * shots["X"] /(shots["X"]**2 + shots["C"]**2 - (7.32/2)**2)), np.arctan(7.32 * shots["X"] /(shots["X"]**2 + shots["C"]**2 - (7.32/2)**2)) + np.pi)
 #if you ever encounter problems (like you have seen that model treats 0 as 1 and 1 as 0) while modelling - change the dependant variable to object 
-shots["Goal"] = shots.tags.apply(lambda x: 1 if {'id':101} in x else 0).astype(object)
+shots["Goal"] = shots.tags.apply(lambda x: 1 if {'id':101} in x else 0)
 
 ##############################################################################
 # Plotting shot location
@@ -192,10 +192,11 @@ plt.show()
 shotcount_dist = np.histogram(shots['Angle']*180/np.pi, bins=40, range=[0, 150])
 #number of goals from angle
 goalcount_dist = np.histogram(goals['Angle']*180/np.pi, bins=40, range=[0, 150])
-np.seterr(divide='ignore', invalid='ignore')
+np.seterr(divide='ignore', invalid='ignore') #Ignore divide by 0
 #probability of scoring goal
 prob_goal = np.divide(goalcount_dist[0], shotcount_dist[0])
 angle = shotcount_dist[1]
+#Midangle of each interval
 midangle = (angle[:-1] + angle[1:])/2
 #make plot
 fig,ax = plt.subplots()
@@ -209,17 +210,21 @@ plt.show()
 ##############################################################################
 # Fitting logistic regression with random coefficients
 # ----------------------------
-# To our data we fit a logistic regression curve with set parameters - 3 for intercept and -3 for angle. However, these are most likely
+# To our data we fit a logistic regression curve with set parameters; -3 for intercept and 3 for angle. However, these are most likely
 # not the best estimators of true parameters. 
 
 fig, ax = plt.subplots()
-b = [3, -3]
+b = [-3, 3]
 x = np.arange(150,step=0.1)
-y = 1/(1+np.exp(b[0]+b[1]*x*np.pi/180)) 
+y = 1/(1+np.exp(-(b[0]+b[1]*x*np.pi/180))) 
 #plot line
 ax.plot(midangle, prob_goal, linestyle='none', marker= '.', markersize= 12, color='black')
 #plot logistic function
 ax.plot(x, y, linestyle='solid', color='black')
+ax.set_ylabel('Probability chance scored')
+ax.set_xlabel("Shot angle (degrees)")
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
 plt.show()
 
 ##############################################################################
@@ -228,7 +233,7 @@ plt.show()
 # The best parameters are those which maximize the log-likelihood.
 
 #calculate xG
-xG = 1/(1+np.exp(b[0]+b[1]*shots['Angle'])) 
+xG = 1/(1+np.exp(-(b[0]+b[1]*shots['Angle']))) 
 shots = shots.assign(xG = xG)
 shots_40 = shots.iloc[:40]
 fig, ax = plt.subplots()
@@ -272,7 +277,7 @@ print(test_model.summary())
 #get params        
 b=test_model.params
 #calculate xG
-xGprob = 1/(1+np.exp(b[0]+b[1]*midangle*np.pi/180)) 
+xGprob = 1/(1+np.exp(-(b[0]+b[1]*midangle*np.pi/180))) 
 fig, ax = plt.subplots()
 #plot data
 ax.plot(midangle, prob_goal, linestyle='none', marker= '.', markersize= 12, color='black')
@@ -317,7 +322,7 @@ test_model = smf.glm(formula="Goal ~ Distance" , data=shots,
 print(test_model.summary())        
 b=test_model.params
 #calculate xG
-xGprob=1/(1+np.exp(b[0]+b[1]*middistance)) 
+xGprob=1/(1+np.exp(-(b[0]+b[1]*middistance))) 
 #plot line
 ax.plot(middistance, xGprob, linestyle='solid', color='black')
 plt.show()
@@ -330,7 +335,6 @@ plt.show()
 # ----------------------------
 # To our model we can add more variables than only one. We can try adding distance to goal squared and see if it improves
 # our predictions.
-
 #calculating distance squared
 shots["D2"] = shots['Distance']**2
 #adding it to the model
@@ -341,7 +345,7 @@ print(test_model.summary())
 #get parameters       
 b=test_model.params
 #calculate xG
-xGprob=1/(1+np.exp(b[0]+b[1]*middistance+b[2]*pow(middistance,2))) 
+xGprob=1/(1+np.exp(-(b[0]+b[1]*middistance+b[2]*pow(middistance,2)))) 
 fig, ax = plt.subplots()
 #plot line
 ax.plot(middistance, prob_goal, linestyle='none', marker= '.', color='black')
@@ -384,7 +388,7 @@ def calculate_xG(sh):
    bsum=b[0]
    for i,v in enumerate(model_variables):
        bsum=bsum+b[i+1]*sh[v]
-   xG = 1/(1+np.exp(bsum)) 
+   xG = 1/(1+np.exp(-bsum)) 
    return xG   
 
 #add an xG to my dataframe
