@@ -82,11 +82,21 @@ df[var[-3:]].head(3)
 # Calculating action-based Expected Threat values for passes
 # ----------------------------
 #
-# To predict the outcome of a shot, we trained a model (XGB classifier) on Bundesliga dataset. In the code we use
-# model saved in the file. It was trained using *xgboost* library version 1.6.2.
-# Training steps are provided commented out. Using it we predict
-# probability of a chain ending with a shot. Then, on chains that ended with a shot, we fit a linear regression 
-# to calculate the probability that a shot ended with a goal. Product of these 2 values is our action-based Expected Threat statistic.
+# To calculate action-based Expected Threat values for passes we use a two-step process.
+# 
+# **Step 1: Predicting if a pass belongs to a chain ending with a shot**
+# 
+# We use logistic regression (XGBoost classifier) to predict whether a pass belongs to a possession chain 
+# that ends with a shot. The outcome variable is binary (True/False), representing whether the chain ended with a shot.
+# Here we load a pre-trained model trained on Bundesliga data, using the xgboost library version 1.6.2.
+# The training steps are provided in the commented section below. 
+# 
+# **Step 2: Predicting the xG value of that shot**
+# 
+# For passes predicted to end in a shot, we use linear regression to predict the Expected Goals (xG) value 
+# of that shot. The outcome variable here is continuous, ranging from 0 to 1.
+# 
+# The product of these two probabilities gives us our **action-based Expected Threat (xT)** statistic
 
 ### TRAINING, it's not perfect ML procedure, but results in AUC 0.2 higher than Logistic Regression ###
 #passes = df.loc[ df["eventName"].isin(["Pass"])]
