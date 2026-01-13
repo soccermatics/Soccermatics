@@ -20,7 +20,8 @@ author = 'David Sumpter and Aleksander Andrzejewski'
 extensions = ['sphinx.ext.mathjax',
               'sphinx_gallery.gen_gallery',
               'sphinxcontrib.youtube',
-              'myst_parser'
+              'myst_parser',
+              'sphinx_copybutton',
               ]
 
 source_suffix = {

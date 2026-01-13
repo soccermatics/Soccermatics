@@ -41,3 +41,4 @@ dependencies:
       - sphinxcontrib-youtube
       - myst-parser==0.18.1
       - ruptures
+      - sphinx-copybutton
