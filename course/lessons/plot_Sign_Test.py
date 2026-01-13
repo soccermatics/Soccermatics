@@ -45,7 +45,7 @@ player_df = pd.DataFrame(players)
 # ----------------------------
 #
 # First, we filter the events to only keep shots. Then, we check for Son's id in the player database. As the next step,
-# we keep shots made by him. Then, we look for the shots made with his left (ones with *id* = 401) and right (ones with *id* = 401) foot.
+# we keep shots made by him. Then, we look for the shots made with his left (ones with *id* = 401) and right (ones with *id* = 402) foot.
 # In the end, we create a list with ones for shots with his left foot and -1 for shots with his right foot.
 
 #take shots only
