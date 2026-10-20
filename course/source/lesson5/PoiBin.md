@@ -154,3 +154,5 @@ Even without considering that the results are exact (not approximated),
 and that the code is shorter,
 both numbers also compare rather favorably 
 with 10,000 simulations requiring $n$ elementary computations each.
+
+You can also test this exact $O(n^2)$ dynamic-programming recurrence interactively (alongside Dixon–Coles match matrices) in the free [Football Charts Shot-xG & Dixon–Coles Calculator](https://www.football-charts.com/tools/dixon-coles-calculator).
